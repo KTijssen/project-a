@@ -23,6 +23,6 @@ jobs:
           repository: KTijssen/global-actions
           ref: main
           token: ${{ secrets.PAT_TOKEN }}
-          path: ./.github/workflows
+          path: ./.github/global
       - name: Run my action
-        uses: ./.github/workflows/common
+        uses: ./.github/global/common.yaml
