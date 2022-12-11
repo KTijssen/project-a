@@ -20,7 +20,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
         with:
-          repository: ktijssen/global-actions
+          repository: KTijssen/global-actions
           ref: main
           #token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           path: ./.github/workflows
