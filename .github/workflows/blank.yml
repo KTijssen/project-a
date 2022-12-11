@@ -22,7 +22,7 @@ jobs:
         with:
           repository: KTijssen/global-actions
           ref: main
-          #token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
           path: ./.github/workflows
       - name: Run my action
         uses: ./.github/workflows/common
