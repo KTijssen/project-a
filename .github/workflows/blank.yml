@@ -25,4 +25,4 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           path: ./.github/global
       - name: Run my action
-        uses: ./.github/global/common.yaml
+        uses: ./.github/global
