@@ -125,7 +125,7 @@ jobs:
 
   SetVersion:
     needs: checkout
-    name: ""
+    name: Common
     uses: KTijssen/global-actions/.github/workflows/common.yaml@main
 
   BuildMaven:
@@ -133,5 +133,7 @@ jobs:
     needs: SetVersion
     uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
 
-  # Deployment:
-  #   uses: KTijssen/global-actions/.github/workflows/openshift.yaml@main
+  BuildManifest:
+    name: Build
+    needs: SetVersion
+    uses: KTijssen/global-actions/.github/workflows/manifests.yaml@main
