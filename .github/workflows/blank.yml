@@ -35,8 +35,8 @@ jobs:
           cp ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml ${GITHUB_WORKSPACE}/.github/workflows/.
       - name: show files in workflows dir
         run: |
-          ls -la ./.github/workflows/a
+          ls -la ./.github/workflows/
 
-  start_2nd:    
-    needs: checkout
-    uses: ./.github/workflows/action.yaml
+  # start_2nd:    
+  #   needs: checkout
+  #   uses: ./.github/workflows/action.yaml
