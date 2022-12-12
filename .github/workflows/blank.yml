@@ -133,7 +133,7 @@ jobs:
     needs: SetVersion
     uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
 
-  BuildManifest:
+  BuildManifests:
     name: Build
     needs: SetVersion
     uses: KTijssen/global-actions/.github/workflows/manifests.yaml@main
