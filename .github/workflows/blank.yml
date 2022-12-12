@@ -37,7 +37,7 @@ jobs:
         run: |
           ls -la ${GITHUB_WORKSPACE}
           ls ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml
-          cp ${GITHUB_WORKSPACE/global-actions/.github/workflows/*.yaml ${GITHUB_WORKSPACE}/.github/workflows/.
+          cp ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml ${GITHUB_WORKSPACE}/.github/workflows/.
           # ls -la
           
 
