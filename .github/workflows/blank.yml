@@ -110,11 +110,15 @@ jobs:
     name: Deploy to Accept
     needs: DeployToTest
     runs-on: [self-hosted]
+    if: 
+      contains('
+        main
+        master
+        new-feature/*
+      ', github.ref_name)
     steps:
       - name: Deploy to Test
         shell: bash
-        run: |
-          env
-          ./global-actions/deployment/deployment_push2repo.sh
+        run: ./global-actions/deployment/deployment_push2repo.sh
         env:
           OC_ENV: Test
