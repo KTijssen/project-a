@@ -4,6 +4,9 @@ name: CI
 
 # Controls when the workflow will run
 on:
+  # Triggers the workflow on push only for the "main" branch
+  push:
+    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,7 +26,11 @@ jobs:
           repository: KTijssen/global-actions
           ref: main
           token: ${{ secrets.PAT_TOKEN }}
-          path: ./global
+          path: ./global-actions
+      - name: Show all files in ./global-actions
+        run: |
+          find ./global-actions
+          
 
-  start_2nd:        
-    uses: ./global/.github/workflows/action.yaml
+  # start_2nd:        
+  #   uses: ./global/.github/workflows/action.yaml
