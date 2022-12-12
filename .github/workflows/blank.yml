@@ -33,13 +33,9 @@ jobs:
       - name: Copy all yaml files in ./global-actions
         run: |
           cp ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml ${GITHUB_WORKSPACE}/.github/workflows/.
-      # - name: show files in workflows dir
-      #   run: |
-      #     ls -la ${GITHUB_WORKSPACE}
-      #     ls ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml
-      #     cp ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml ${GITHUB_WORKSPACE}/.github/workflows/.
-      #     # ls -la
-          
+      - name: show files in workflows dir
+        run: |
+          ls -la ./.github/workflows/a
 
   start_2nd:    
     needs: checkout
