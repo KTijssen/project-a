@@ -126,3 +126,14 @@ jobs:
   Common:
     uses: KTijssen/global-actions/.github/workflows/common.yaml@main
     needs: checkout
+
+  Build:
+    needs: Common
+    steps:
+    - uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
+    - uses: KTijssen/global-actions/.github/workflows/docker.yaml@main
+      if: ${{ success() }}
+  
+  Deployment:
+    needs: Common
+    uses: KTijssen/global-actions/.github/workflows/openshift.yaml@main
