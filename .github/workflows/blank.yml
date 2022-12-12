@@ -37,12 +37,9 @@ jobs:
         run: |
           ls -la
           cat README.md
-          cd global-actions/.github/workflows/
+          cp global-actions/.github/workflows/*.yaml .github/workflows/.
+          cd ~/.github/workflows/.
           ls -la
-          pwd
-          # cp ~/global-actions/.github/workflows/*.yaml ~/.github/workflows/.
-          # cd ~/.github/workflows/.
-          # ls -la
           
 
   # start_2nd:        
