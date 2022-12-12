@@ -125,10 +125,12 @@ jobs:
 
   Common:
     needs: checkout
-    name: Build
+    name: ""
     uses: KTijssen/global-actions/.github/workflows/common.yaml@main
 
-  Build:
+  BuildMaven:
+    name: Build
+    needs: SetVersion
     uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
 
   # Deployment:
