@@ -30,16 +30,16 @@ jobs:
           ref: main
           token: ${{ secrets.PAT_TOKEN }}
           path: "global-actions"
-      # - name: Copy all yaml files in ./global-actions
-      #   run: |
-      #     cp ./global/.github/workflows/*.yaml .github/workflows/.
-      - name: show files in workflows dir
+      - name: Copy all yaml files in ./global-actions
         run: |
-          ls -la ${GITHUB_WORKSPACE}
-          ls ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml
           cp ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml ${GITHUB_WORKSPACE}/.github/workflows/.
-          # ls -la
+      # - name: show files in workflows dir
+      #   run: |
+      #     ls -la ${GITHUB_WORKSPACE}
+      #     ls ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml
+      #     cp ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml ${GITHUB_WORKSPACE}/.github/workflows/.
+      #     # ls -la
           
 
-  # start_2nd:        
-  #   uses: ./global/.github/workflows/action.yaml
+  start_2nd:        
+    uses: ./.github/workflows/action.yaml
