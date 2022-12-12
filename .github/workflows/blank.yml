@@ -125,4 +125,4 @@ jobs:
 
   Deploy:
     name: Call workflow
-    uses: KTijssen/global-actions/.github/workflows/common.yaml
+    uses: KTijssen/global-actions/.github/workflows/common.yaml@main
