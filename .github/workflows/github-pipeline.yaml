@@ -39,7 +39,7 @@ jobs:
       major: 0
       minor: 0
     secrets:
-      envPATCH: ${{ secrets.PATCH }}
+      pactch: ${{ secrets.PATCH }}
 
   # BuildMaven:
   #   name: Build
