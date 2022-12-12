@@ -26,13 +26,12 @@ jobs:
           repository: KTijssen/global-actions
           ref: main
           token: ${{ secrets.PAT_TOKEN }}
-          path: ./global-actions
       # - name: Copy all yaml files in ./global-actions
       #   run: |
       #     cp ./global/.github/workflows/*.yaml .github/workflows/.
       - name: show files in workflows dir
         run: |
-          find .
+          ls -la
           
 
   # start_2nd:        
