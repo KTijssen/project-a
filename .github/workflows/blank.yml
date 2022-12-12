@@ -94,7 +94,7 @@ jobs:
   RunE2ETest:
     name: Run E2E Test
     needs: DeployToTest
-    if: RUN_E2E_TEST == 'true'
+    if: env.RUN_E2E_TEST == 'true'
     runs-on: [self-hosted]
     steps:
       - name: Deploy to Test
