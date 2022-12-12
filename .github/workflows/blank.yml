@@ -11,6 +11,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  RUN_E2E_TEST: false
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -76,3 +79,26 @@ jobs:
       - name: Check Rego Policies
         shell: bash
         run: ./global-actions/deployment/deployment_check_policies.sh
+
+  DeployToTest:
+    name: Deploy to Test
+    needs: GlobalDeployment
+    runs-on: [self-hosted]
+    steps:
+      - name: Deploy to Test
+        shell: bash
+        run: ./global-actions/deployment/deployment_push2repo.sh
+        env:
+          OC_ENV: Test
+
+  RunE2ETest:
+    name: Run E2E Test
+    needs: DeployToTest
+    if: RUN_E2E_TEST == 'true'
+    runs-on: [self-hosted]
+    steps:
+      - name: Deploy to Test
+        shell: bash
+        run: ./global-actions/deployment/deployment_push2repo.sh
+        env:
+          OC_ENV: Test
