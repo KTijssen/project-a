@@ -37,6 +37,6 @@ jobs:
         run: |
           ls -la ./.github/workflows/
 
-  # start_2nd:    
-  #   needs: checkout
-  #   uses: ./.github/workflows/action.yaml
+  start_2nd:    
+    needs: checkout
+    uses: ./.github/workflows/action.yaml
