@@ -36,7 +36,7 @@ jobs:
       - name: show files in workflows dir
         run: |
           ls -la ${GITHUB_WORKSPACE}
-          ls ${GITHUB_WORKSPACE/global-actions/.github/workflows/*.yaml
+          ls ${GITHUB_WORKSPACE}/global-actions/.github/workflows/*.yaml
           # cp ${GITHUB_WORKSPACE/global-actions/.github/workflows/*.yaml ${GITHUB_WORKSPACE}/.github/workflows/.
           # ls -la
           
