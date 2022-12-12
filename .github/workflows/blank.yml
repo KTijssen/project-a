@@ -35,12 +35,8 @@ jobs:
       #     cp ./global/.github/workflows/*.yaml .github/workflows/.
       - name: show files in workflows dir
         run: |
-          env
-          # ls -la
-          # cat README.md
-          # cp global-actions/.github/workflows/*.yaml .github/workflows/.
-          # cd ~/.github/workflows/.
-          # ls -la
+          cp ${RUNNER_WORKSPACE}/global-actions/.github/workflows/*.yaml ${RUNNER_WORKSPACE}/.github/workflows/.
+          ls -la
           
 
   # start_2nd:        
