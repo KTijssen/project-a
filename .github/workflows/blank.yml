@@ -48,9 +48,7 @@ jobs:
     steps:
       - name: Maven Build
         shell: bash
-        run: |
-          ls -la
-          ./global-actions/build/build_maven.sh
+        run: ./global-actions/build/build_maven.sh
   
   BuildContainerImage:
     name: Build & Push Container Image
