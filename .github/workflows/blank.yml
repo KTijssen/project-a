@@ -40,3 +40,21 @@ jobs:
       - name: Get version number
         shell: bash
         run: ./global-actions/common.sh
+
+  BuildAndTest:
+    name: Maven Build & Test
+    needs: SetVersion
+    runs-on: [self-hosted]
+    steps:
+      - name: Maven Build
+        shell: bash
+        run: ./global-actions/build/build_maven.sh
+  
+  BuildContainerImage:
+    name: Build & Push Container Image:
+    needs: BuildAndTest
+    runs-on: [self-hosted]
+    steps:
+      - name: Build & Push
+        shell: bash
+        run: ./global-actions/build/build_docker-container.sh
