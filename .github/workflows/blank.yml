@@ -39,9 +39,10 @@ jobs:
           cat README.md
           cd global-actions/.github/workflows/
           ls -la
-          cp ~/global-actions/.github/workflows/*.yaml ~/.github/workflows/.
-          cd ~/.github/workflows/.
-          ls -la
+          pwd
+          # cp ~/global-actions/.github/workflows/*.yaml ~/.github/workflows/.
+          # cd ~/.github/workflows/.
+          # ls -la
           
 
   # start_2nd:        
