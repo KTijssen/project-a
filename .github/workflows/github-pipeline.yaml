@@ -1,14 +1,8 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Project-A
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push only for the "main" branch
   push:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
       run_e2e_test:
@@ -21,15 +15,10 @@ concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   checkout:
     name: Checkout Repo's
-    # The type of runner that the job will run on
     runs-on: [self-hosted]
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:       
       - name: Check out local project repository
         uses: actions/checkout@v3
@@ -41,91 +30,6 @@ jobs:
           ref: main
           token: ${{ secrets.PAT_TOKEN }}
           path: "global-actions"
-
-  # SetVersion:
-  #   name: Semantic Versioning
-  #   needs: checkout
-  #   runs-on: [self-hosted]
-  #   steps:
-  #     - name: Get version number
-  #       shell: bash
-  #       run: ./global-actions/common.sh
-
-  # BuildAndTest:
-  #   name: Maven Build & Test
-  #   needs: SetVersion
-  #   runs-on: [self-hosted]
-  #   steps:
-  #     - name: Maven Build
-  #       shell: bash
-  #       run: ./global-actions/build/build_maven.sh
-  
-  # BuildContainerImage:
-  #   name: Build & Push Container Image
-  #   needs: BuildAndTest
-  #   runs-on: [self-hosted]
-  #   steps:
-  #     - name: Build & Push
-  #       shell: bash
-  #       run: ./global-actions/build/build_docker-container.sh
-
-  # BuildManifests:
-  #   name: Build Manifests files
-  #   needs: SetVersion
-  #   runs-on: [self-hosted]
-  #   steps:
-  #     - name: Build Manifest
-  #       shell: bash
-  #       run: ./global-actions/build/build_manifests.sh
-
-  # GlobalDeployment:
-  #   name: Global Deployment checks
-  #   needs: [BuildContainerImage, BuildManifests]
-  #   runs-on: [self-hosted]
-  #   steps:
-  #     - name: Check Rego Policies
-  #       shell: bash
-  #       run: ./global-actions/deployment/deployment_check_policies.sh
-
-  # DeployToTest:
-  #   name: Deploy to Test
-  #   needs: GlobalDeployment
-  #   runs-on: [self-hosted]
-  #   steps:
-  #     - name: Deploy to Test
-  #       shell: bash
-  #       run: ./global-actions/deployment/deployment_push2repo.sh
-  #       env:
-  #         OC_ENV: Test
-
-  # RunE2ETest:
-  #   name: Run E2E Test
-  #   needs: DeployToTest
-  #   runs-on: [self-hosted]
-  #   if: ${{ github.event.inputs.run_e2e_test == 'true' }}
-  #   steps:
-  #     - name: Deploy to Test
-  #       shell: bash
-  #       run: ./global-actions/deployment/deployment_push2repo.sh
-  #       env:
-  #         OC_ENV: Test
-
-  # DeployToAccept:
-  #   name: Deploy to Accept
-  #   needs: DeployToTest
-  #   runs-on: [self-hosted]
-  #   if: 
-  #     contains('
-  #       main
-  #       master
-  #       new-feature/*
-  #     ', github.ref_name)
-  #   steps:
-  #     - name: Deploy to Accept
-  #       shell: bash
-  #       run: ./global-actions/deployment/deployment_push2repo.sh
-  #       env:
-  #         OC_ENV: Test
 
   SetVersion:
     needs: checkout
