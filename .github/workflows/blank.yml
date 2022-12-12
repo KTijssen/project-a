@@ -98,7 +98,7 @@ jobs:
     name: Run E2E Test
     needs: DeployToTest
     runs-on: [self-hosted]
-    if: ${{ github.event.inputs.run_e2e_test == 'true'
+    if: ${{ github.event.inputs.run_e2e_test == 'true' }}
     steps:
       - name: Deploy to Test
         shell: bash
