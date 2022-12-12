@@ -137,3 +137,8 @@ jobs:
     name: Build
     needs: SetVersion
     uses: KTijssen/global-actions/.github/workflows/manifests.yaml@main
+
+  Deployment:
+    name: Deployment
+    needs: [BuildMaven, BuildManifests]
+    uses: KTijssen/global-actions/.github/workflows/deployment.yaml@main
