@@ -58,3 +58,21 @@ jobs:
       - name: Build & Push
         shell: bash
         run: ./global-actions/build/build_docker-container.sh
+
+  BuildManifests:
+    name: Build Manifests files
+    needs: SetVersion
+    runs-on: [self-hosted]
+    steps:
+      - name: Build Manifest
+        shell: bash
+        run: ./global-actions/build/build_manifests.sh
+
+  GlobalDeployment:
+    name: Global Deployment checks
+    needs: [BuildContainerImage, BuildManifests]
+    runs-on: [self-hosted]
+    steps:
+      - name: Check Rego Policies
+        shell: bash
+        run: ./global-actions/deployment/deployment_check_policies.sh
