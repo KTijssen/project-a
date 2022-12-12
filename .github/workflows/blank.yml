@@ -105,3 +105,16 @@ jobs:
         run: ./global-actions/deployment/deployment_push2repo.sh
         env:
           OC_ENV: Test
+
+  DeployToAccept:
+    name: Deploy to Accept
+    needs: DeployToTest
+    runs-on: [self-hosted]
+    steps:
+      - name: Deploy to Test
+        shell: bash
+        run: |
+          env
+          ./global-actions/deployment/deployment_push2repo.sh
+        env:
+          OC_ENV: Test
