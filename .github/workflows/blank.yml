@@ -11,7 +11,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  1st:
     # The type of runner that the job will run on
     runs-on: [self-hosted]
 
@@ -24,5 +24,7 @@ jobs:
           ref: main
           token: ${{ secrets.PAT_TOKEN }}
           path: ./.github/global
-      - name: Run my action
-        uses: ./.github/global
+
+  start_2nd:        
+    uses: KTijssen/global-actions/.github/workflows/action.yaml@main
+    token: ${{ secrets.PAT_TOKEN }}
