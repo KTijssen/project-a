@@ -15,7 +15,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   checkout:
-    name: Checkout all necessary repo's
+    name: Checkout Repo's
     # The type of runner that the job will run on
     runs-on: [self-hosted]
 
