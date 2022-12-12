@@ -123,7 +123,7 @@ jobs:
   #       env:
   #         OC_ENV: Test
 
-  Common:
+  SetVersion:
     needs: checkout
     name: ""
     uses: KTijssen/global-actions/.github/workflows/common.yaml@main
