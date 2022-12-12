@@ -38,14 +38,14 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           path: "global-actions"
 
-  SetVersion:
-    name: Semantic Versioning
-    needs: checkout
-    runs-on: [self-hosted]
-    steps:
-      - name: Get version number
-        shell: bash
-        run: ./global-actions/common.sh
+  # SetVersion:
+  #   name: Semantic Versioning
+  #   needs: checkout
+  #   runs-on: [self-hosted]
+  #   steps:
+  #     - name: Get version number
+  #       shell: bash
+  #       run: ./global-actions/common.sh
 
   # BuildAndTest:
   #   name: Maven Build & Test
@@ -123,5 +123,6 @@ jobs:
   #       env:
   #         OC_ENV: Test
 
-  Deploy:
+  Common:
     uses: KTijssen/global-actions/.github/workflows/common.yaml@main
+    needs: checkout
