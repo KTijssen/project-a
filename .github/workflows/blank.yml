@@ -31,6 +31,7 @@ jobs:
       #     cp ./global/.github/workflows/*.yaml .github/workflows/.
       - name: show files in workflows dir
         run: |
+          cd .github/
           ls -la
           
 
