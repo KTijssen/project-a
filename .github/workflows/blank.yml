@@ -125,11 +125,11 @@ jobs:
 
   Common:
     needs: checkout
-    name: "Build"
+    name: Build
     uses: KTijssen/global-actions/.github/workflows/common.yaml@main
 
-  # Build:
-  #   uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
+  Build:
+    uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
 
   # Deployment:
   #   uses: KTijssen/global-actions/.github/workflows/openshift.yaml@main
