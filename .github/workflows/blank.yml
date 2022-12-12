@@ -34,9 +34,9 @@ jobs:
 
   SetVersion:
     name: Semantic Versioning
+    needs: checkout
     runs-on: [self-hosted]
     steps:
       - name: Get version number
-
-    needs: checkout
-    uses: ${GITHUB_WORKSPACE}/global-actions/.github/workflows/action.yaml
+        shell: bash
+        run: common.sh
