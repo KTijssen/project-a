@@ -47,82 +47,81 @@ jobs:
         shell: bash
         run: ./global-actions/common.sh
 
-  BuildAndTest:
-    name: Maven Build & Test
-    needs: SetVersion
-    runs-on: [self-hosted]
-    steps:
-      - name: Maven Build
-        shell: bash
-        run: ./global-actions/build/build_maven.sh
+  # BuildAndTest:
+  #   name: Maven Build & Test
+  #   needs: SetVersion
+  #   runs-on: [self-hosted]
+  #   steps:
+  #     - name: Maven Build
+  #       shell: bash
+  #       run: ./global-actions/build/build_maven.sh
   
-  BuildContainerImage:
-    name: Build & Push Container Image
-    needs: BuildAndTest
-    runs-on: [self-hosted]
-    steps:
-      - name: Build & Push
-        shell: bash
-        run: ./global-actions/build/build_docker-container.sh
+  # BuildContainerImage:
+  #   name: Build & Push Container Image
+  #   needs: BuildAndTest
+  #   runs-on: [self-hosted]
+  #   steps:
+  #     - name: Build & Push
+  #       shell: bash
+  #       run: ./global-actions/build/build_docker-container.sh
 
-  BuildManifests:
-    name: Build Manifests files
-    needs: SetVersion
-    runs-on: [self-hosted]
-    steps:
-      - name: Build Manifest
-        shell: bash
-        run: ./global-actions/build/build_manifests.sh
+  # BuildManifests:
+  #   name: Build Manifests files
+  #   needs: SetVersion
+  #   runs-on: [self-hosted]
+  #   steps:
+  #     - name: Build Manifest
+  #       shell: bash
+  #       run: ./global-actions/build/build_manifests.sh
 
-  GlobalDeployment:
-    name: Global Deployment checks
-    needs: [BuildContainerImage, BuildManifests]
-    runs-on: [self-hosted]
-    steps:
-      - name: Check Rego Policies
-        shell: bash
-        run: ./global-actions/deployment/deployment_check_policies.sh
+  # GlobalDeployment:
+  #   name: Global Deployment checks
+  #   needs: [BuildContainerImage, BuildManifests]
+  #   runs-on: [self-hosted]
+  #   steps:
+  #     - name: Check Rego Policies
+  #       shell: bash
+  #       run: ./global-actions/deployment/deployment_check_policies.sh
 
-  DeployToTest:
-    name: Deploy to Test
-    needs: GlobalDeployment
-    runs-on: [self-hosted]
-    steps:
-      - name: Deploy to Test
-        shell: bash
-        run: ./global-actions/deployment/deployment_push2repo.sh
-        env:
-          OC_ENV: Test
+  # DeployToTest:
+  #   name: Deploy to Test
+  #   needs: GlobalDeployment
+  #   runs-on: [self-hosted]
+  #   steps:
+  #     - name: Deploy to Test
+  #       shell: bash
+  #       run: ./global-actions/deployment/deployment_push2repo.sh
+  #       env:
+  #         OC_ENV: Test
 
-  RunE2ETest:
-    name: Run E2E Test
-    needs: DeployToTest
-    runs-on: [self-hosted]
-    if: ${{ github.event.inputs.run_e2e_test == 'true' }}
-    steps:
-      - name: Deploy to Test
-        shell: bash
-        run: ./global-actions/deployment/deployment_push2repo.sh
-        env:
-          OC_ENV: Test
+  # RunE2ETest:
+  #   name: Run E2E Test
+  #   needs: DeployToTest
+  #   runs-on: [self-hosted]
+  #   if: ${{ github.event.inputs.run_e2e_test == 'true' }}
+  #   steps:
+  #     - name: Deploy to Test
+  #       shell: bash
+  #       run: ./global-actions/deployment/deployment_push2repo.sh
+  #       env:
+  #         OC_ENV: Test
 
-  DeployToAccept:
-    name: Deploy to Accept
-    needs: DeployToTest
-    runs-on: [self-hosted]
-    if: 
-      contains('
-        main
-        master
-        new-feature/*
-      ', github.ref_name)
-    steps:
-      - name: Deploy to Accept
-        shell: bash
-        run: ./global-actions/deployment/deployment_push2repo.sh
-        env:
-          OC_ENV: Test
+  # DeployToAccept:
+  #   name: Deploy to Accept
+  #   needs: DeployToTest
+  #   runs-on: [self-hosted]
+  #   if: 
+  #     contains('
+  #       main
+  #       master
+  #       new-feature/*
+  #     ', github.ref_name)
+  #   steps:
+  #     - name: Deploy to Accept
+  #       shell: bash
+  #       run: ./global-actions/deployment/deployment_push2repo.sh
+  #       env:
+  #         OC_ENV: Test
 
   Deploy:
-    name: Call workflow
     uses: KTijssen/global-actions/.github/workflows/common.yaml@main
