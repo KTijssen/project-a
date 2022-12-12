@@ -39,4 +39,4 @@ jobs:
     steps:
       - name: Get version number
         shell: bash
-        run: common.sh
+        run: ./global-actions/common.sh
