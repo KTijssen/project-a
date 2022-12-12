@@ -97,7 +97,7 @@ jobs:
     runs-on: [self-hosted]
     steps:
       - name: Deploy to Test
-        if: ${{ RUN_E2E_TEST == 'true' }}
+        if: ${{ env.RUN_E2E_TEST == 'true' }}
         shell: bash
         run: ./global-actions/deployment/deployment_push2repo.sh
         env:
