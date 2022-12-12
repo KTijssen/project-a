@@ -36,10 +36,12 @@ jobs:
       - name: show files in workflows dir
         run: |
           ls -la
-          cat README.md 
-          cp global-actions/workflows/*.yaml .github/workflows/.
-          cd .github/workflows/.
+          cat README.md
+          cd global-actions/
           ls -la
+          # cp global-actions/workflows/*.yaml .github/workflows/.
+          # cd .github/workflows/.
+          # ls -la
           
 
   # start_2nd:        
