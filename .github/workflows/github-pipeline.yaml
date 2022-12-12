@@ -35,18 +35,22 @@ jobs:
     needs: checkout
     name: Common
     uses: KTijssen/global-actions/.github/workflows/common.yaml@main
+    with:
+      major: 0
+      minor: 0
+      patch: ${{ secrets.PATCH}}
 
-  BuildMaven:
-    name: Build
-    needs: SetVersion
-    uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
+  # BuildMaven:
+  #   name: Build
+  #   needs: SetVersion
+  #   uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
 
-  BuildManifests:
-    name: Build
-    needs: SetVersion
-    uses: KTijssen/global-actions/.github/workflows/manifests.yaml@main
+  # BuildManifests:
+  #   name: Build
+  #   needs: SetVersion
+  #   uses: KTijssen/global-actions/.github/workflows/manifests.yaml@main
 
-  Deployment:
-    name: Deployment
-    needs: [BuildMaven, BuildManifests]
-    uses: KTijssen/global-actions/.github/workflows/deployment.yaml@main
+  # Deployment:
+  #   name: Deployment
+  #   needs: [BuildMaven, BuildManifests]
+  #   uses: KTijssen/global-actions/.github/workflows/deployment.yaml@main
