@@ -112,7 +112,6 @@ jobs:
     runs-on: [self-hosted]
     if: 
       contains('
-        main
         master
         new-feature/*
       ', github.ref_name)
