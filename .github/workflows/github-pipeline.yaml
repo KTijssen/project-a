@@ -38,7 +38,6 @@ jobs:
     with:
       major: 0
       minor: 0
-      patch: ${{ secrets.PATCH}}
 
   # BuildMaven:
   #   name: Build
