@@ -39,6 +39,7 @@ jobs:
       major: "0"
       minor: "1"
 
+
   # BuildMaven:
   #   name: Build
   #   needs: SetVersion
