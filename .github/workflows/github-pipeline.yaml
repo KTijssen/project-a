@@ -27,14 +27,14 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: KTijssen/global-actions
-          ref: main
+          ref: beta
           token: ${{ secrets.PAT_TOKEN }}
           path: "global-actions"
 
   SetVersion:
     needs: checkout
     name: Common
-    uses: KTijssen/global-actions/.github/workflows/common.yaml@main
+    uses: KTijssen/global-actions/.github/workflows/common.yaml@beta
     with:
       major: "1"
       minor: "0"
@@ -43,14 +43,14 @@ jobs:
   # BuildMaven:
   #   name: Build
   #   needs: SetVersion
-  #   uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
+  #   uses: KTijssen/global-actions/.github/workflows/maven.yaml@beta
 
   BuildManifests:
     name: Build
     needs: SetVersion
-    uses: KTijssen/global-actions/.github/workflows/manifests.yaml@main
+    uses: KTijssen/global-actions/.github/workflows/manifests.yaml@beta
 
   # Deployment:
   #   name: Deployment
   #   needs: [BuildMaven, BuildManifests]
-  #   uses: KTijssen/global-actions/.github/workflows/deployment.yaml@main
+  #   uses: KTijssen/global-actions/.github/workflows/deployment.yaml@beta
