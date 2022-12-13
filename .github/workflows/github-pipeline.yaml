@@ -9,7 +9,7 @@ on:
         description: Run E2E tests
         required: true
         type: boolean
-        default: 'false'
+        default: false
 
 concurrency:
   group: ${{ github.ref }}
@@ -45,10 +45,10 @@ jobs:
   #   needs: SetVersion
   #   uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
 
-  # BuildManifests:
-  #   name: Build
-  #   needs: SetVersion
-  #   uses: KTijssen/global-actions/.github/workflows/manifests.yaml@main
+  BuildManifests:
+    name: Build
+    needs: SetVersion
+    uses: KTijssen/global-actions/.github/workflows/manifests.yaml@main
 
   # Deployment:
   #   name: Deployment
