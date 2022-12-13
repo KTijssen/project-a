@@ -16,9 +16,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  checkout:
-    name: Checkout Repo's
-    runs-on: [self-hosted]
+  # checkout:
+  #   name: Checkout Repo's
+  #   runs-on: [self-hosted]
+  #   steps:       
+  #     - name: Check out local project repository
+  #       uses: actions/checkout@v3
+
+  #     - name: Check out global-actions repository
+  #       uses: actions/checkout@v3
+  #       with:
+  #         repository: KTijssen/global-actions
+  #         ref: main
+  #         token: ${{ secrets.PAT_TOKEN }}
+  #         path: "global-actions"
+
+  SetVersion:
+    name: Common
     steps:       
       - name: Check out local project repository
         uses: actions/checkout@v3
@@ -30,14 +44,11 @@ jobs:
           ref: main
           token: ${{ secrets.PAT_TOKEN }}
           path: "global-actions"
-
-  SetVersion:
-    needs: checkout
-    name: Common
-    uses: KTijssen/global-actions/.github/workflows/common.yaml@main
-    with:
-      major: "0"
-      minor: "0"
+      - name: Semantic Versioning
+        uses: KTijssen/global-actions/.github/workflows/common.yaml@main
+        with:
+          major: "0"
+          minor: "0"
 
   # BuildMaven:
   #   name: Build
