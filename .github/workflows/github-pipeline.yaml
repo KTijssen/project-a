@@ -49,8 +49,6 @@ jobs:
     name: Build
     needs: SetVersion
     uses: KTijssen/global-actions/.github/workflows/manifests.yaml@beta
-    with:
-      git_tag: ${{ needs.SetVersion.outputs.git_tag }}
 
   # Deployment:
   #   name: Deployment
