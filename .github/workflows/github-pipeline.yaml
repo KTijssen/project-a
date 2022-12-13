@@ -37,7 +37,7 @@ jobs:
     uses: KTijssen/global-actions/.github/workflows/common.yaml@main
     with:
       major: "0"
-      minor: "0"
+      minor: "1"
 
   # BuildMaven:
   #   name: Build
