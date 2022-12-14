@@ -11,6 +11,9 @@ on:
         type: boolean
         default: false
 
+env:
+  REF_GLOBAL_ACTIONS: beta
+
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
@@ -26,7 +29,7 @@ jobs:
   SetVersion:
     needs: checkout
     name: Common
-    uses: KTijssen/global-actions/.github/workflows/common.yaml@beta
+    uses: KTijssen/global-actions/.github/workflows/common.yaml@${{ env.REF_GLOBAL_ACTIONS }}
     with:
       major: "1"
       minor: "0"
