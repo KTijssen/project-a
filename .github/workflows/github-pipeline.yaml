@@ -34,7 +34,7 @@ jobs:
         run: |
           ls -la
           mv ./global-actions/.github/workflows/*.yaml ./.github/workflows/
-          ls ./.github/workflows/
+          ls -la ./.github/workflows/
 
 
   # SetVersion:
