@@ -22,6 +22,13 @@ jobs:
     steps:       
       - name: Checkout project repository
         uses: actions/checkout@v3
+      - name: Check out global-actions repository
+        uses: actions/checkout@v3
+        with:
+          repository: KTijssen/global-actions
+          ref: beta
+          token: ${{ secrets.PAT_TOKEN }}
+          path: "global-actions"
       - name: Move yaml files to workflow dir
         shell: bash
         run: |
