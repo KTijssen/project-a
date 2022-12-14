@@ -11,6 +11,9 @@ on:
         type: boolean
         default: false
 
+env:
+  ref_global-actions: beta
+
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
@@ -20,13 +23,13 @@ jobs:
     name: Checkout Project Repo
     runs-on: [self-hosted]
     steps:       
-      - name: Check out local project repository
+      - name: Checkout project repository
         uses: actions/checkout@v3
 
   SetVersion:
     needs: checkout
     name: Common
-    uses: KTijssen/global-actions/.github/workflows/common.yaml@beta
+    uses: KTijssen/global-actions/.github/workflows/common.yaml@${ref_global-actions}
     with:
       major: "1"
       minor: "0"
