@@ -32,19 +32,17 @@ jobs:
       - name: Move yaml files to workflow dir
         shell: bash
         run: |
-          ls -la
           mv ./global-actions/.github/workflows/*.yaml ./.github/workflows/
-          ls -la ./.github/workflows/
 
-
-  # SetVersion:
-  #   needs: checkout
-  #   name: Common
-  #   uses: KTijssen/global-actions/.github/workflows/common.yaml@beta
-  #   with:
-  #     major: "1"
-  #     minor: "0"
-  #   secrets: inherit
+  SetVersion:
+    needs: checkout
+    name: Common
+    uses: ./.github/workflows/common.yaml
+    #uses: KTijssen/global-actions/.github/workflows/common.yaml@beta
+    with:
+      major: "1"
+      minor: "0"
+    secrets: inherit
 
 
   # BuildMaven:
