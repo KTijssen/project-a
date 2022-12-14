@@ -40,10 +40,11 @@ jobs:
       minor: "0"
 
 
-  # BuildMaven:
-  #   name: Build
-  #   needs: SetVersion
-  #   uses: KTijssen/global-actions/.github/workflows/maven.yaml@beta
+  BuildMaven:
+    name: Build
+    needs: SetVersion
+    uses: KTijssen/global-actions/.github/workflows/maven.yaml@beta
+    secrets: inherit
 
   BuildManifests:
     name: Build
