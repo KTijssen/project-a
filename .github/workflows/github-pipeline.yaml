@@ -11,9 +11,6 @@ on:
         type: boolean
         default: false
 
-env:
-  REF_GLOBAL_ACTIONS: beta
-
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
@@ -25,11 +22,17 @@ jobs:
     steps:       
       - name: Checkout project repository
         uses: actions/checkout@v3
+      - name: Move yaml files to workflow dir
+        shell: bash
+        run: |
+          mv ./global-actions/.github/workflows/*.yaml ./.github/workflows/
+          ls ./.github/workflows/
+
 
   SetVersion:
     needs: checkout
     name: Common
-    uses: KTijssen/global-actions/.github/workflows/common.yaml@${{ env.REF_GLOBAL_ACTIONS }}
+    uses: KTijssen/global-actions/.github/workflows/common.yaml@beta
     with:
       major: "1"
       minor: "0"
