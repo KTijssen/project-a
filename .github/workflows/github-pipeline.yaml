@@ -32,12 +32,11 @@ jobs:
       minor: "0"
     secrets: inherit
 
-
-  # BuildMaven:
-  #   name: Build
-  #   needs: SetVersion
-  #   uses: KTijssen/global-actions/.github/workflows/maven.yaml@beta
-  #   secrets: inherit
+  BuildMaven:
+    name: Build
+    needs: SetVersion
+    uses: KTijssen/global-actions/.github/workflows/maven.yaml@beta
+    secrets: inherit
 
   # BuildManifests:
   #   name: Build
