@@ -17,24 +17,11 @@ concurrency:
 
 jobs:
   checkout:
-    name: Checkout Repo's
+    name: Checkout Project Repo
     runs-on: [self-hosted]
     steps:       
       - name: Check out local project repository
         uses: actions/checkout@v3
-      - name: Check out global-actions repository
-        uses: actions/checkout@v3
-        with:
-          repository: KTijssen/global-actions
-          ref: beta
-          token: ${{ secrets.PAT_TOKEN }}
-          path: "global-actions"
-      - name: Upload Global Actions artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: global-actions
-          path: ./global-actions
-          retention-days: 1
 
   SetVersion:
     needs: checkout
@@ -43,6 +30,7 @@ jobs:
     with:
       major: "1"
       minor: "0"
+    secrets: inherit
 
 
   # BuildMaven:
