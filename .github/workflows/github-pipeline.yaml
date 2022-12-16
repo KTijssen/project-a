@@ -23,24 +23,26 @@ jobs:
       - name: Checkout project repository
         uses: actions/checkout@v3
 
-  SetVersion:
+  setVersion:
     needs: checkout
     name: Common
     uses: KTijssen/global-actions/.github/workflows/common.yaml@beta
+    secrets: inherit
     with:
       major: "1"
       minor: "0"
-    secrets: inherit
 
-  BuildMaven:
+  buildMaven:
     name: Build
-    needs: SetVersion
+    needs: setVersion
     uses: KTijssen/global-actions/.github/workflows/maven.yaml@beta
     secrets: inherit
+    with:
+      gitTag: ${{ needs.SetVersion.outputs.gitTag }}
 
-  BuildManifests:
+  buildManifests:
     name: Build
-    needs: SetVersion
+    needs: setVersion
     uses: KTijssen/global-actions/.github/workflows/manifests.yaml@beta
     with:
       gitTag: ${{ needs.SetVersion.outputs.gitTag }}
