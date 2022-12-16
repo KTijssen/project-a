@@ -5,7 +5,7 @@ metadata:
     app: project-a
     name: project-a
     group: bro
-    version: "%gitTag%"
+    version: "%IMAGE_VERSION%"
   name: project-a
 spec:
   replicas: 1
@@ -18,8 +18,8 @@ spec:
         app: project-a
         name: project-a
         group: bro
-        version: "%gitTag%"
+        version: "%IMAGE_VERSION%"
     spec:
       containers:
-      - image: "%containerRegistry%/kevintijssen/project-a:%gitTag%"
+      - image: "%IMAGE_HOST%/kevintijssen/project-a:%IMAGE_VERSION%"
         name: project-a
