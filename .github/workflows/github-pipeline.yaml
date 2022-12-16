@@ -36,16 +36,12 @@ jobs:
     name: Build
     needs: SetVersion
     uses: KTijssen/global-actions/.github/workflows/maven.yaml@beta
-    with: 
-      projectName: ${{ github.workflow }}
     secrets: inherit
 
   BuildManifests:
     name: Build
     needs: SetVersion
     uses: KTijssen/global-actions/.github/workflows/manifests.yaml@beta
-    with: 
-      projectName: ${{ github.workflow }}
 
   # Deployment:
   #   name: Deployment
