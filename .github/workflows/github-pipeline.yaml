@@ -4,19 +4,16 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
-    inputs:
-      run_e2e_test:
-        description: Run E2E tests
-        required: true
-        type: boolean
-        default: false
+    # inputs:
+    #   run_e2e_test:
+    #     description: Run E2E tests
+    #     required: true
+    #     type: boolean
+    #     default: false
 
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
-
-env:
-  projectName: project-a
 
 jobs:
   checkout:
@@ -40,7 +37,7 @@ jobs:
     needs: SetVersion
     uses: KTijssen/global-actions/.github/workflows/maven.yaml@beta
     with: 
-      projectName: ${{ env.projectName }}
+      projectName: ${{ github.workflow }}
     secrets: inherit
 
   BuildManifests:
@@ -48,7 +45,7 @@ jobs:
     needs: SetVersion
     uses: KTijssen/global-actions/.github/workflows/manifests.yaml@beta
     with: 
-      projectName: ${{ env.projectName }}
+      projectName: ${{ github.workflow }}
 
   # Deployment:
   #   name: Deployment

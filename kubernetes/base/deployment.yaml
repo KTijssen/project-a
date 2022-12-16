@@ -2,18 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: nginx
-  name: nginx
+    app: project-a
+    name: project-a
+    group: bro
+    version: "%gitTag%"
+  name: project-a
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: project-a
   template:
     metadata:
       labels:
-        app: nginx
+        app: project-a
+        name: project-a
+        group: bro
+        version: "%gitTag%"
     spec:
       containers:
-      - image: nginx:alpine
-        name: nginx
+      - image: "%containerRegistry%/kevintijssen/project-a:%gitTag%"
+        name: project-a
