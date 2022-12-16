@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: project-a
+    name: project-a
+    group: bro
+    version: "%IMAGE_VERSION%"
+  name: project-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project-a
+  template:
+    metadata:
+      labels:
+        app: project-a
+        name: project-a
+        group: bro
+        version: "%IMAGE_VERSION%"
+    spec:
+      containers:
+      - image: "%IMAGE_HOST%/kevintijssen/project-a:%IMAGE_VERSION%"
+        name: project-a

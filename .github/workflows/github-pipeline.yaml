@@ -1,15 +1,15 @@
-name: Project-A
+name: project-a
 
 on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
-    inputs:
-      run_e2e_test:
-        description: Run E2E tests
-        required: true
-        type: boolean
-        default: 'false'
+    # inputs:
+    #   run_e2e_test:
+    #     description: Run E2E tests
+    #     required: true
+    #     type: boolean
+    #     default: false
 
 concurrency:
   group: ${{ github.ref }}
@@ -17,40 +17,37 @@ concurrency:
 
 jobs:
   checkout:
-    name: Checkout Repo's
+    name: Checkout Project Repo
     runs-on: [self-hosted]
     steps:       
-      - name: Check out local project repository
+      - name: Checkout project repository
         uses: actions/checkout@v3
 
-      - name: Check out global-actions repository
-        uses: actions/checkout@v3
-        with:
-          repository: KTijssen/global-actions
-          ref: main
-          token: ${{ secrets.PAT_TOKEN }}
-          path: "global-actions"
-
-  SetVersion:
+  setVersion:
     needs: checkout
     name: Common
-    uses: KTijssen/global-actions/.github/workflows/common.yaml@main
+    uses: KTijssen/global-actions/.github/workflows/common.yaml@beta
+    secrets: inherit
     with:
       major: "1"
       minor: "0"
 
+  buildMaven:
+    name: Build
+    needs: setVersion
+    uses: KTijssen/global-actions/.github/workflows/build_maven.yaml@beta
+    secrets: inherit
+    with:
+      gitTag: ${{ needs.SetVersion.outputs.gitTag }}
 
-  # BuildMaven:
-  #   name: Build
-  #   needs: SetVersion
-  #   uses: KTijssen/global-actions/.github/workflows/maven.yaml@main
-
-  # BuildManifests:
-  #   name: Build
-  #   needs: SetVersion
-  #   uses: KTijssen/global-actions/.github/workflows/manifests.yaml@main
+  buildManifests:
+    name: Build
+    needs: setVersion
+    uses: KTijssen/global-actions/.github/workflows/build_manifests.yaml@beta
+    with:
+      gitTag: ${{ needs.SetVersion.outputs.gitTag }}
 
   # Deployment:
   #   name: Deployment
   #   needs: [BuildMaven, BuildManifests]
-  #   uses: KTijssen/global-actions/.github/workflows/deployment.yaml@main
+  #   uses: KTijssen/global-actions/.github/workflows/deployment.yaml@beta
