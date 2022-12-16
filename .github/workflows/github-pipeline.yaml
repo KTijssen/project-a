@@ -35,7 +35,7 @@ jobs:
   buildMaven:
     name: Build
     needs: setVersion
-    uses: KTijssen/global-actions/.github/workflows/maven.yaml@beta
+    uses: KTijssen/global-actions/.github/workflows/build/maven.yaml@beta
     secrets: inherit
     with:
       gitTag: ${{ needs.SetVersion.outputs.gitTag }}
@@ -43,7 +43,7 @@ jobs:
   buildManifests:
     name: Build
     needs: setVersion
-    uses: KTijssen/global-actions/.github/workflows/manifests.yaml@beta
+    uses: KTijssen/global-actions/.github/workflows/build/manifests.yaml@beta
     with:
       gitTag: ${{ needs.SetVersion.outputs.gitTag }}
 
