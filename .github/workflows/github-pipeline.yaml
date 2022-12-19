@@ -4,12 +4,12 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
-    # inputs:
-    #   run_e2e_test:
-    #     description: Run E2E tests
-    #     required: true
-    #     type: boolean
-    #     default: false
+    inputs:
+      run_e2e_test:
+        description: Run E2E tests
+        required: true
+        type: boolean
+        default: false
 
 concurrency:
   group: ${{ github.ref }}
@@ -47,7 +47,7 @@ jobs:
     with:
       gitTag: ${{ needs.SetVersion.outputs.gitTag }}
 
-  # Deployment:
-  #   name: Deployment
-  #   needs: [BuildMaven, BuildManifests]
-  #   uses: KTijssen/global-actions/.github/workflows/deployment.yaml@beta
+  kubernetes:
+    name: Kubernetes
+    needs: [buildMaven, buildManifests]
+    uses: KTijssen/global-actions/.github/workflows/kubernetes.yaml@beta
