@@ -23,8 +23,3 @@ spec:
       containers:
       - image: "%IMAGE_HOST%/kevintijssen/project-a:%IMAGE_VERSION%"
         name: project-a
-        livenessProbe:
-          exec:
-            command:
-            - cat
-            - /tmp/healthy
